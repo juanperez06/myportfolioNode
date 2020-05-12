@@ -1,0 +1,38 @@
+.content-area {
+    .topHeader {
+        display: flex;
+        height: calc(100vh - 49px);
+        .topLeft{
+            display: inline-block;
+            background: $topLeftBG;
+            width: 50%;
+            min-height: 500px;
+            height: 100%;
+            vertical-align: top;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            h1{
+                font-family: $displayFont;
+                color: white;
+                font-size: 3rem;
+            }
+        }
+        .topRight{
+            display: inline-block;
+            background: $topRightBG;
+            width: 50%;
+            min-height: 500px;
+            height: 100%;
+            vertical-align: top;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            img{
+                width: 100%;
+                max-width: 473px;
+            }
+        }
+    }
+}
