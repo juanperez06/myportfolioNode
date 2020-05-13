@@ -18,6 +18,6 @@ app.use(webRoutes)
 
 
 
-server.listen(process.env.PORT || 5000, () => {
+server.listen(process.env.PORT || 3000, () => {
     console.log('Server is running on http://localhost:3000/ to stop server press control + c ' + process.env.DB_USERNAME)
 })
