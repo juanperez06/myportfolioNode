@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const pagesController = require('../controllers/pagescontroller')
-const projectsController = require('../controllers/projectsController')
-const blogController = require('../controllers/blogController')
+const pagesController = require('../controllers/pagescontroller.js')
+const projectsController = require('../controllers/projectsController.js')
+const blogController = require('../controllers/blogController.js')
 
 
 /* ==============================================================
