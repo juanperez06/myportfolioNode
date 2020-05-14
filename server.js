@@ -3,6 +3,7 @@ const app = express()
 const webRoutes = require('./server/routes/web.js')
 const pug = require('pug')
 const path = require('path')
+const port = process.env.PORT || 3000
 
 const http = require('http')
 const server = http.Server(app)
@@ -18,4 +19,6 @@ app.use(webRoutes)
 
 
 
-server.listen(process.env.PORT || 3000)
+server.listen(port, () => {
+    console.log('Server is running on http://localhost:3000/ press crlt + c to stop server');
+})

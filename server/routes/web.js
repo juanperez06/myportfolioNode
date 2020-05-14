@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const pagesController = require('../controllers/pagescontroller')
+const pagesController = require('../controllers/pagesController')
 const projectsController = require('../controllers/projectsController')
 const blogController = require('../controllers/blogController')
 
