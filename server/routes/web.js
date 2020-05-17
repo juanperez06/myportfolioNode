@@ -35,7 +35,9 @@ Blog
 
 
 router.get('/blog', blogController.index)
+router.get('/blog/create', blogController.create)
 router.get('/blog/:title', blogController.show)
+router.post('/blog', blogController.store)
 
 /* ==============================================================
 Admin

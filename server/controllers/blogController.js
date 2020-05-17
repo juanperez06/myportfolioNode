@@ -4,7 +4,15 @@ const PostModel = require('../models/Post').model
 const blogController = {}
 
 blogController.index = (req, res) => {
-    res.render('blog/index')
+
+    //Find all the post
+    PostModel.find({}, function(err, data){
+     console.log(data)
+     res.render('blog/index', {
+         posts: data
+     })   
+    })
+    
 }
 
 blogController.show = (req, res) => {
@@ -16,12 +24,11 @@ blogController.create = (req, res) => {
 }
 
 blogController.store = (req, res) => {
-    PostModel.create({
-        title: 'My First Post',
-        description: 'Hey this is a cool post about nothing'   
-    }, function (err, data){
+    PostModel.create({title: req.body.title, description: req.body.description}, function(err, data){
         console.log(data)
+        res.send(data)
     })
 }
+
 
 module.exports = blogController
