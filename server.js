@@ -50,7 +50,7 @@ app.use(methodOverride('?_method', {
 
 var myDB = 'mongodb://localhost:27017/portfolio'
 
-mongoose.connect(process.env.MONGODB_URI || MONGODB_URI, function(){
+mongoose.connect(process.env.MONGODB_URI , function(){
         useUnifiedTopology: true
         useNewUrlParser: true
 
