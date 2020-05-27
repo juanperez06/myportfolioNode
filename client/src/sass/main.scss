@@ -12,12 +12,15 @@ project
 */
 @import "projects/index";
 @import "projects/show";
+@import "projects/create";
+@import "projects/edit";
 /*
 Blog
 */
 @import "blog/index";
 @import "blog/show";
 @import "blog/create";
+@import "blog/edit";
 
 
 * {

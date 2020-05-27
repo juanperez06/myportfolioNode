@@ -3,9 +3,28 @@ extends ../layouts/main.pug
 block title
     title Projects
 block content
-    .container.projects-page
+    div(class="container projects-page create-page")
         .content-box
             .row
                 .col-md-8
-                    h1 Create Projects
+                    h1 Create a Project
+                    form(method="POST", action="/projects/")
+                        div
+                            label(for="title") Title
+                            input(type="text", name="title" required)
+
+                        div
+                            label(for="category") Category
+                            input(type="text", name="category" required)
+
+                        div
+                            label(for="tags") Tags
+                            input(type="text", name="tags")
+                        div
+                            label(for="description") Description
+                            textarea(name="description")
+                        div
+                            button(type="submit") Save Project
                     
+                .col-md-4
+                    img(src="https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png")

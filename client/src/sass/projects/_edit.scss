@@ -1,0 +1,36 @@
+.project-page.edit-page {
+    label {
+        font-weight: 700;
+        display: block;
+        margin: 0 0 10px;
+        font-size: 16px;
+    }
+    textarea, input {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+    button {
+        background-color: $headerBG;
+        border-radius: 100px;
+        border: none;
+        outline: none;
+        padding: 15px;
+        outline-style: none;
+        cursor: pointer;
+        font-family: $displayFont;
+        font-weight: 700;
+        font-size: 15px;
+        margin-bottom: 21px;
+
+        &:hover {
+            background-color: #449D44;
+            color: white;
+            transition: all ease-in-out .3s;
+
+        }
+    } /*<--------- Button styles ends ----------> */
+
+    .col-md-4 img {
+        margin: 0 auto;
+    }
+}

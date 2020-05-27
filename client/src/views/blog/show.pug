@@ -8,14 +8,19 @@ block content
                 .col-md-8
                     .content-box
                         .row
-                            h1 Blogs
+                            h1= post.title
                             .col-md-12
                                     img(src="https://cdn.britannica.com/67/19367-050-885866B4/Valley-Taurus-Mountains-Turkey.jpg")   
                             .col-md-12
-                               
-                                p.
-                                    I'm baby vexillologist yr enim shabby chic, labore adipisicing flexitarian quinoa nulla culpa readymade lumbersexual. Intelligentsia gluten-free thundercats jean shorts anim banjo tattooed trust fund photo booth dreamcatcher viral subway tile coloring book. Helvetica irure qui, blue bottle woke typewriter banjo sustainable health goth portland jean shorts retro iceland bitters migas. Normcore chia fam duis unicorn, sed occaecat godard. Hot chicken farm-to-table in thundercats esse.
+                                h2= post.category
+                                p= post.description
                                 
+                                .btn
+                                    div() 
+                                        a(href="/blog/" + post.slug + "/delete", class="delete-btn") DELETE
+                                    br
+                                    div() 
+                                        a(href="/blog/" + post.slug + "/edit", class="edit-btn") Edit 
 
                 .col-md-4
                     .content-box

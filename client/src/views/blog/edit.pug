@@ -3,12 +3,27 @@ extends ../layouts/main.pug
 block title
     title Blogs
 block content
-    .container.about-page
+    div(class="container blog-page edit-page")
         .content-box
             .row
                 .col-md-8
-                    h1 Blogs
-                    p.
-                        I'm baby vexillologist yr enim shabby chic, labore adipisicing flexitarian quinoa nulla culpa readymade lumbersexual. Intelligentsia gluten-free thundercats jean shorts anim banjo tattooed trust fund photo booth dreamcatcher viral subway tile coloring book. Helvetica irure qui, blue bottle woke typewriter banjo sustainable health goth portland jean shorts retro iceland bitters migas. Normcore chia fam duis unicorn, sed occaecat godard. Hot chicken farm-to-table in thundercats esse.
-                .col-md-4
-                    img(src="https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png")    
+                    h1 Edit a Post
+
+                    form(action="/blog/"+ post.slug +"?_method=PUT", method="POST")
+                        input(type="hidden", name="_id", value=post._id)
+                        div
+                            label(for="title") Title
+                            input(type="text", name="title", value=post.title)
+
+                        div
+                            label(for="category") Category
+                            input(type="text", name="category" value=post.category)
+                        div
+                            label(for="description") Description
+                            textarea(name="description")= post.description
+                        div
+                            button(type="submit") Update Post
+                .col-md-4 
+                        img(src="https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png")   
+
+                    

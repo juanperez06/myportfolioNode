@@ -3,9 +3,26 @@ extends ../layouts/main.pug
 block title
     title Projects
 block content
-    .container.projects-page
+    div(class="container project-page edit-page")
         .content-box
             .row
                 .col-md-8
-                    h1 Edit Project
+                    h1 Edit a Project
+
+                    form(action="/projects/"+ projects.slug +"?_method=PUT", method="POST")
+                        input(type="hidden", name="_id", value=projects._id)
+                        div
+                            label(for="title") Title
+                            input(type="text", name="title", value=projects.title)
+
+                        div
+                            label(for="category") Category
+                            input(type="text", name="category" value=projects.category)
+                        div
+                            label(for="description") Description
+                            textarea(name="description")= projects.description
+                        div
+                            button(type="submit") Update Project
+                .col-md-4
+                    img(src="https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png")
                     

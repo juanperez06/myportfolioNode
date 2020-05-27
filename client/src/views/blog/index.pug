@@ -11,9 +11,9 @@ block content
                         .content-box
                             .row
                                 .col-md-12
-                                    a(href="/blog/title")
+                                    a(href="/blog/" + post.slug)
                                         h1= post.title
-                                        p= post.description
+                                        
                 .col-md-4  
                     .content-box
                         include ../includes/side-ad.pug

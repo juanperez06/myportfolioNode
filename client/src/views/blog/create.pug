@@ -7,11 +7,15 @@ block content
         .content-box
             .row
                 .col-md-8
-                    h1 Blogs
-                    form(method="POST", action="/blog")
+                    h1 Create a Post
+                    form(method="POST", action="/blog/")
                         div
                             label(for="title") Title
-                            input(type="text", name="title")
+                            input(type="text", name="title" required)
+
+                        div
+                            label(for="category") Category
+                            input(type="text", name="category")
                         div
                             label(for="description") Description
                             textarea(name="description")

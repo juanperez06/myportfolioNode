@@ -1,53 +1,23 @@
 const express = require('express')
-
+const ProjectModel = require('../models/Project').model
+const slugify = require('../global/slugify')
 const projectsController = {}
 
 projectsController.index = (req, res) => {
-    const projects = [{
-        title: 'Dashboard',
-        slug: 'dashboard',
-        tags: ['html', 'css', 'javascript', 'php'],
-        date: '5/10/2020',
-        img: 'https://cdn.dribbble.com/users/1593845/screenshots/11350256/media/31b00ecd0c4252d1528f5325b8c7302d.jpg'
-    },
-    {
-        title: 'Banking App',
-        slug: 'banking-app',
-        tags: ['html', 'css', 'javascript', 'MongoDB', 'python'],
-        date: '5/10/2020',
-        img: 'https://cdn.dribbble.com/users/3454560/screenshots/11358171/media/5eafc9da8f703c504afe07df4c43ee2a.png'
-    },
-    {
-        title: 'Food Delivery App',
-        slug: 'food-delivery-app',
-        tags: ['html', 'css', 'javascript', 'jquery'],
-        date: '5/10/2020',
-        img: 'https://cdn.dribbble.com/users/110372/screenshots/11357787/media/76648b049612249c3c7c5582c9cec69a.png'
-    },
-    {
-        title: 'Stock Market App',
-        slug: 'stock-market-app',
-        tags: ['html', 'css', 'javascript', 'python', 'node'],
-        date: '5/10/2020',
-        img: 'https://cdn.dribbble.com/users/452635/screenshots/11108566/media/794c3d130d009bdb0c40105bd8c7e1c9.png'
-    },
-    {
-        title: 'Garden Tools App',
-        slug: 'garden-tools-app',
-        tags: ['html', 'css', 'javascript', 'MongoDB'],
-        date: '5/10/2020',
-        img: 'https://cdn.dribbble.com/users/992274/screenshots/11318054/media/0d6771483c6e302c0abe752f564f1b68.jpg'
-    },{
-        title: 'Pokemon API App',
-        slug: 'pokemon-api-app',
-        tags: ['html', 'css', 'javascript', 'python'],
-        date: '5/10/2020',
-        img: 'https://cdn.dribbble.com/users/113499/screenshots/11353869/media/f2aec6d513bc98f4fed875f76ef284a4.png'
-    }]
     
-    res.render('projects/index', {
-        projects: projects 
+    ProjectModel.find({}, function(err, data){
+
+        if(err) {
+            console.log("Error can't find the posts")
+        } else {
+            console.log(data)
+            res.render('projects/index', {
+                projects: data
+     }) 
+        }
+       
     })
+    
 }
 
 projectsController.create = (req, res) => {
@@ -55,29 +25,79 @@ projectsController.create = (req, res) => {
 }
 
 projectsController.store = (req, res) => {
-    res.send({
-        saved: true
-    })
-}
+    
+    ProjectModel.create({
+        title: req.body.title,
+        category: req.body.category,
+        description: req.body.description,
+        tags: req.body.tags,
+        slug: slugify(req.body.title)}, 
+            function(err, data){
+                if(err) {
+                    console.log('Error cannot save post' + err)
+                } else {
+                    console.log(data)
+                    res.redirect('/projects')
+                }
+            }
+    )}   
+    
 
 projectsController.show = (req, res) => {
-    res.render('projects/show')
+    ProjectModel.find({slug: req.params.slug}, function(err, data) {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(data)
+            res.render('projects/show', {
+                projects: data[0]
+        })
+        }
+    })
 }
 
 projectsController.edit = (req, res) => {
-    res.render('projects/edit')
+    ProjectModel.find({slug: req.params.slug}, function(err, data) {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(data)
+            res.render('projects/edit', {
+                projects: data[0]
+        })
+        }
+    })
 }
 
 projectsController.update = (req, res) => {
-    res.send({
-        updated: true
-    })
+    ProjectModel.findOneAndUpdate({
+        _id: req.body._id},{$set:{
+        title: req.body.title,
+        category: req.body.category,
+        description: req.body.description,
+        slug: slugify(req.body.title)
+        }}, 
+            function(err, data){
+                if(err) {
+                    res.redirect(303,'/projects')
+                    console.log('Error cannot save post')
+                } else {
+                    console.log('UPDATE DATA: ==============================================')
+                    console.log(data)
+                    console.log('===========================================================')
+                    res.redirect(303,'/projects')
+                }
+            }
+      )
 }
 
 projectsController.destroy = (req, res) => {
-    res.send({
-        deleted: true
-    })
+    ProjectModel.remove({
+        slug: req.params.slug}, function (err) {
+            if (err) return handleError(err);
+                console.log('deleted')
+                res.redirect('/projects')
+        })
 }
 
 
