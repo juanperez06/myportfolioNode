@@ -49,8 +49,12 @@ app.use(methodOverride('?_method', {
 
 
 var myDB = 'mongodb://localhost:27017/portfolio'
+var MONGODB_URI = 'mongodb+srv://juanperez06:justme240694@cluster0-pz7tg.mongodb.net/test?retryWrites=true&w=majority';
 
-mongoose.connect(process.env.MONGODB_URI || myDB, function(){
+mongoose.connect(process.env.MONGODB_URI || MONGODB_URI, function(){
+        useUnifiedTopology: true
+        useNewUrlParser: true
+
     if(mongoose.connection.readyState == 1){
         console.log('Connected to mongoDB');
         console.log('on ' + myDB);
