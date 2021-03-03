@@ -22,7 +22,7 @@
     "method-override": "^3.0.0",
     "mongodb": "^3.5.7",
     "mongoose": "^5.9.14",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "react": "^16.13.1",
     "split-string": "^6.1.0",
     "tsscmp": "^1.0.6"
